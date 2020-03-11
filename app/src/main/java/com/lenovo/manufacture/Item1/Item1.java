@@ -184,6 +184,7 @@ public class Item1 extends AppCompatActivity implements View.OnClickListener {
                             for (Worker worker : workers) {
                                 if (worker.getId() == lineWorker.getPeopleId()) {
                                     LW lw = new LW(lineWorker.getPower(), worker.getPeopleName(), worker.getStatus());
+                                    lws.add(lw);
                                     Log.d("Item1", "lw:" + lw);
                                 }
                             }
@@ -198,7 +199,7 @@ public class Item1 extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
             }
-            mLines[i].addView(view);
+            mLines[i].addView(view,LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         }
     }
 
