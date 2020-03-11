@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        function startActivity(a){
+            nativeMethod.startActivity(a)
+                }
+    </script>
+</head>
+<style>
+    /* 初始化 */
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: #949494;
+    }
+
+    ul {
+        list-style: none;
+        display: inline-block;
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+        content: "";
+        display: block;
+        clear: both
+    }
+
+    /* body背景，规定字体 */
+    body {
+        background: url('./img/beijing02.jpg') no-repeat;
+        background-size: no-repeat;
+        background-size: 100%;
+        color: #0f5000;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+    }
+
+    /* 头部区域 */
+    .indexTop {
+        background: url("./img/tiao02.png") no-repeat; 
+        width: 100%;
+        height: 40px;
+        color: #fff;
+        background-size: 100%;
+    }
+    
+    .indexTop>p {
+        position: absolute;
+        left: 49%;
+        top: 1%;
+    }
+
+    /* 主体 */
+    .container {
+        width: 850px;
+        height: 600px;
+        position: relative;
+        padding: 5px;
+    }
+
+    .container li {
+        width: 190px;
+        text-align: center;
+        margin: 5px;
+        padding: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+    .container li .imgbox,.container li .text{
+        margin-top: 0px;
+        text-shadow: -1px -1px #f3f3f3, 1px 1px #000;
+    }
+</style>
+
+<body>
+    <!-- 头部 -->
+    <div class="indexTop">
+        <p class='indexP'><b>首页</b></p>
+    </div>
+    <!-- 主体 -->
+    <div class="container">
+        <ul class="clearfix">
+            <a onclick="startActivity(1)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0041.png" alt=""></div>
+                <div class="text">灯光控制</div>
+            </li>
+            </a>
+            <a onclick="startActivity(2)">
+                <li>
+                <div class="imgbox"><img src="./img/tubiao0041.png" alt=""></div>
+                <div class="text"><a href="#">温度统计</a></div>
+            </li>
+            </a>
+            <a onclick="startActivity(3)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0017.png" alt=""></div>
+                <div class="text">人员解雇</div>
+            </li>
+            </a>
+            <a onclick="startActivity(4)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0041.png" alt=""></div>
+                <div class="text">生产环节</div>
+            </li>
+            </a>
+        </ul>
+        <ul class="clearfix">
+            <a onclick="startActivity(5)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0036.png" alt=""></div>
+                <div class="text"><a href="#">问题车辆仓库</a></div>
+            </li>
+            </a>
+            <a onclick="startActivity(6)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0026.png" alt=""></div>
+                <div class="text"><a href="#">购买原材料</a></div>
+            </li>
+            </a>
+            <a onclick="startActivity(7)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0041.png" alt=""></div>
+                <div class="text">创建生产线</div>
+            </li>
+            </a>
+            <a onclick="startActivity(8)">
+            <li>
+                <div class="imgbox"><img src="./img/tubiao0049.png" alt=""></div>
+                <div class="text"><a href="#">车辆定制</a></div>
+            </li>
+            </a>
+        </ul>
+    </div>
+</body>
+
+</html>
