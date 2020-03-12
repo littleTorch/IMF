@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lenovo.manufacture.Item1.Item1;
+import com.lenovo.manufacture.Item2.Item2;
 
 /**
  * @author Amoly
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     mActivity.startActivity(new Intent().setClass(MainActivity.this, Item1.class));
                     break;
                 case 2:
-                    mActivity.startActivity(new Intent().setClass(MainActivity.this,TestActivity.class));
+                    mActivity.startActivity(new Intent().setClass(MainActivity.this, Item2.class));
                     break;
                 case 3:
                     mActivity.startActivity(new Intent().setClass(MainActivity.this,TestActivity.class));
