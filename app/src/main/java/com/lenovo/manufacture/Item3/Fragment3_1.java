@@ -114,10 +114,10 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
     private int carId=1;
     private int num=1;
     private int engine;
-    private int speed=0;
-    private int wheel=0;
-    private int control=0;
-    private int brake=0;
+    private int speed;
+    private int wheel;
+    private int control;
+    private int brake;
     private int hang;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -218,6 +218,10 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
         mOk = (Button) view.findViewById(R.id.ok);
         mOk.setOnClickListener(this);
         mBu1.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
+        speed=0;
+        wheel=0;
+        control=0;
+        brake=0;
     }
 
     @Override
@@ -237,6 +241,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
                     public void onFailure(Call call, IOException e) {}
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
+                        Log.d("Fragment3_1", response.body().string());
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().string());
                             if (jsonObject.getString("status").equals("200")) {

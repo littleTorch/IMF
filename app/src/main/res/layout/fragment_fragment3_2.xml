@@ -12,15 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TableRow>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="3" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
-            <TextView android:text="车型" android:layout_weight="3" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="车型" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="交付时间" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="数量" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="发动机排量" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="变速箱" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="轮胎" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="中控" android:layout_weight="2" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="刹车" android:layout_weight="3" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:text="悬挂" android:layout_weight="3" android:background="#fff" android:layout_margin="2dp" android:padding="10dp" android:textSize="20dp" android:textColor="#000" android:textStyle="bold" android:gravity="center"/>
         </TableRow>
     </TableLayout>
     <ScrollView
