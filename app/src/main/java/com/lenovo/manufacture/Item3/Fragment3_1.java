@@ -110,15 +110,15 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
     View view;
     private TimePickerView picker;
     private Handler handler;
-    private long time=new Date().getTime();
-    private int carId=1;
-    private int num=1;
-    private int engine;
-    private int speed;
-    private int wheel;
-    private int control;
-    private int brake;
-    private int hang;
+    private String time=new Date().getTime()/100+"";
+    private String carId="1";
+    private String num="1";
+    private String engine="0";
+    private String speed="0";
+    private String wheel="0";
+    private String control="0";
+    private String brake="0";
+    private String hang="0";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -151,7 +151,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
         mSp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hang=position;
+                hang=position+"";
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {            }
@@ -172,7 +172,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
         mSp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                engine=position;
+                engine=position+"";
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {            }
@@ -184,7 +184,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
             @Override
             public void onTimeSelect(Date date, View v) {
                 mBu1.setText(new SimpleDateFormat("yyyy/MM/dd").format(date));
-                time=date.getTime();
+                time=date.getTime()/100+"";
             }
         }).isDialog(true)
             .setLabel("年","月","日",null,null,null)
@@ -218,10 +218,6 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
         mOk = (Button) view.findViewById(R.id.ok);
         mOk.setOnClickListener(this);
         mBu1.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
-        speed=0;
-        wheel=0;
-        control=0;
-        brake=0;
     }
 
     @Override
@@ -233,8 +229,8 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
                 picker.show();
                 break;
             case R.id.ok:
-                String url="userWorkId=1&userAppointmentName=vip订单&content=志炬的订单&type=0&gold=2000&color=1";
-                String arg="&carId="+carId+"&time="+time+"&num="+num+"&engine="+engine+"&speed="+speed+"&wheel="+wheel+"&control="+control+"&brake="+brake+"&hang="+hang;
+                String url="userWorkId=1&userAppointmentName=vip订单&content=志炬的订单&type=0&gold=2000&color=1&";
+                String arg="carId="+carId+"&time="+time+"&num="+num+"&engine="+engine+"&speed="+speed+"&wheel="+wheel+"&control="+control+"&brake="+brake+"&hang="+hang;
                 Log.d("Fragment3_1", url + arg);
                 MyOk.post("dataInterface/UserAppointment/create", url+arg, new Callback() {
                     @Override
@@ -268,53 +264,53 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
             case R.id.rg1:
                 switch (checkedId){
                     case R.id.carId1:
-                        carId=1;
+                        carId=1+"";
                         break;
                     case R.id.carId2:
-                        carId=2;
+                        carId=2+"";
                         break;
                     case R.id.carId3:
-                        carId=3;
+                        carId=3+"";
                         break;
                 }
                 break;
             case R.id.rg2:
                 switch (checkedId){
                     case R.id.rg2_1:
-                        speed=0;
+                        speed=0+"";
                         break;
                     case R.id.rg2_2:
-                        speed=1;
+                        speed=1+"";
                         break;
                 }
                 break;
             case R.id.rg3:
                 switch (checkedId){
                     case R.id.rg3_1:
-                        wheel=0;
+                        wheel=0+"";
                         break;
                     case R.id.rg3_2:
-                        wheel=1;
+                        wheel=1+"";
                         break;
                 }
                 break;
             case R.id.rg4:
                 switch (checkedId){
                     case R.id.rg4_1:
-                        control=0;
+                        control=0+"";
                         break;
                     case R.id.rg4_2:
-                        control=1;
+                        control=1+"";
                         break;
                 }
                 break;
             case R.id.rg5:
                 switch (checkedId){
                     case R.id.rg5_1:
-                        brake=0;
+                        brake=0+"";
                         break;
                     case R.id.rg5_2:
-                        brake=1;
+                        brake=1+"";
                         break;
                 }
                 break;

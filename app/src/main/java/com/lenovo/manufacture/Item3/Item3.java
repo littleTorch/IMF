@@ -26,7 +26,6 @@ public class Item3 extends AppCompatActivity implements View.OnClickListener {
     private Button mBt2;
     Fragment frag1= new Fragment3_1();
     Fragment frag2= new Fragment3_2();
-    Drawable drawable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,6 @@ public class Item3 extends AppCompatActivity implements View.OnClickListener {
         mBt1.setOnClickListener(this);
         mBt2 = (Button) findViewById(R.id.bt2);
         mBt2.setOnClickListener(this);
-        drawable=mBt1.getBackground();
     }
 
     @Override
@@ -60,12 +58,12 @@ public class Item3 extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.bt1:
                 fragmentTransaction.replace(R.id.fr,frag1);
-                mBt1.setBackground(drawable);
+                mBt1.setBackgroundColor(Color.GRAY);
                 mBt2.setBackgroundColor(Color.WHITE);
                 break;
             case R.id.bt2:
                 fragmentTransaction.replace(R.id.fr,frag2);
-                mBt2.setBackground(drawable);
+                mBt2.setBackgroundColor(Color.GRAY);
                 mBt1.setBackgroundColor(Color.WHITE);
                 break;
         }
