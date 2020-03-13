@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lenovo.manufacture.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class Item21 extends AppCompatActivity implements View.OnClickListener {
         shops = new ArrayList<>();
         List<Shop> shopps = new ArrayList<>();
         shopps = (ArrayList<Shop>) getIntent().getSerializableExtra("shop");
-        if (!shopps.isEmpty()) {
+        if (shopps!=null) {
             shopps.sort((o1, o2) -> o2.getPrice() / o2.getNum() - o1.getPrice() / o1.getNum());
             total = 0;
             for (int i = 0; i < 4; i++) {
@@ -69,7 +70,7 @@ public class Item21 extends AppCompatActivity implements View.OnClickListener {
                 shops.add(shop);
             }
         }
-        mTotal.setText(total+"");
+        mTotal.setText(new DecimalFormat("###,###,###").format(total));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
