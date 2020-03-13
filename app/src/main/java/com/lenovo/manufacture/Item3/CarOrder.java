@@ -76,7 +76,7 @@ public class CarOrder {
     }
 
     public String getTime() {
-        return new SimpleDateFormat("yyyy/MM/dd").format(new Date(time*100));
+        return new SimpleDateFormat("yyyy/MM/dd").format(new Date(time*1000));
     }
 
     public void setTime(long time) {

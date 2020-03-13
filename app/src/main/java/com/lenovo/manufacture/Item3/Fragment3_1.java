@@ -15,14 +15,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.configure.PickerOptions;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.lenovo.manufacture.MyOk;
@@ -32,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -110,24 +107,26 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
     View view;
     private TimePickerView picker;
     private Handler handler;
-    private String time=new Date().getTime()/100+"";
-    private String carId="1";
-    private String num="1";
-    private String engine="0";
-    private String speed="0";
-    private String wheel="0";
-    private String control="0";
-    private String brake="0";
-    private String hang="0";
+    String carId = "1";
+    String engine = "0";
+    String num = "0";
+    String time = (int)new Date().getTime()/1000+"";
+    String speed = "0";
+    String wheel = "0";
+    String control = "0";
+    String brake = "0";
+    String hang = "0";
+    String s2 = "userWorkId=1&userAppointmentName=订单10086&content=测试订单&type=0&gold=2000&color=1&";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_fragment3_1, container, false);
+        view = inflater.inflate(R.layout.fragment_fragment3_1, container, false);
         initView();
         gettime();
         sp1();
         sp2();
-        handler=new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 Toast.makeText(getActivity(), msg.obj.toString(), Toast.LENGTH_SHORT).show();
@@ -137,7 +136,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
     }
 
     private void sp2() {
-        List sp2=new ArrayList();
+        List sp2 = new ArrayList();
         sp2.add("独立悬挂系统");
         sp2.add("主动悬挂系统");
         sp2.add("横臂式悬挂系统");
@@ -151,15 +150,17 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
         mSp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hang=position+"";
+                hang = position + "";
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
     }
 
     private void sp1() {
-        List sp1=new ArrayList();
+        List sp1 = new ArrayList();
         sp1.add("1.0");
         sp1.add("1.5");
         sp1.add("2.0");
@@ -172,48 +173,67 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
         mSp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                engine=position+"";
+                engine = position + "";
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
     }
 
     private void gettime() {
-        picker=new TimePickerBuilder(getActivity(), new OnTimeSelectListener() {
+        picker = new TimePickerBuilder(getActivity(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 mBu1.setText(new SimpleDateFormat("yyyy/MM/dd").format(date));
-                time=date.getTime()/100+"";
+                time = (int)date.getTime()/1000+ "";
             }
         }).isDialog(true)
-            .setLabel("年","月","日",null,null,null)
-            .setSubmitText("确定")
-            .setCancelText("取消")
-            .build();
+                .setLabel("年", "月", "日", null, null, null)
+                .setSubmitText("确定")
+                .setCancelText("取消")
+                .build();
     }
 
     private void initView() {
         mCarId1 = (RadioButton) view.findViewById(R.id.carId1);
+        mCarId1.setOnClickListener(this);
         mCarId2 = (RadioButton) view.findViewById(R.id.carId2);
+        mCarId2.setOnClickListener(this);
         mCarId3 = (RadioButton) view.findViewById(R.id.carId3);
+        mCarId3.setOnClickListener(this);
         mRg1 = (RadioGroup) view.findViewById(R.id.rg1);
+        mRg1.setOnCheckedChangeListener(this);
         mBu1 = (Button) view.findViewById(R.id.bu1);
         mBu1.setOnClickListener(this);
         mEt2 = (EditText) view.findViewById(R.id.et2);
+        mEt2.setOnClickListener(this);
         mSp1 = (Spinner) view.findViewById(R.id.sp1);
         mRg21 = (RadioButton) view.findViewById(R.id.rg2_1);
+        mRg21.setOnClickListener(this);
         mRg22 = (RadioButton) view.findViewById(R.id.rg2_2);
+        mRg22.setOnClickListener(this);
         mRg2 = (RadioGroup) view.findViewById(R.id.rg2);
+        mRg2.setOnCheckedChangeListener(this);
         mRg31 = (RadioButton) view.findViewById(R.id.rg3_1);
+        mRg31.setOnClickListener(this);
         mRg32 = (RadioButton) view.findViewById(R.id.rg3_2);
+        mRg32.setOnClickListener(this);
         mRg3 = (RadioGroup) view.findViewById(R.id.rg3);
+        mRg3.setOnCheckedChangeListener(this);
         mRg41 = (RadioButton) view.findViewById(R.id.rg4_1);
+        mRg41.setOnClickListener(this);
         mRg42 = (RadioButton) view.findViewById(R.id.rg4_2);
+        mRg42.setOnClickListener(this);
         mRg4 = (RadioGroup) view.findViewById(R.id.rg4);
+        mRg4.setOnCheckedChangeListener(this);
         mRg51 = (RadioButton) view.findViewById(R.id.rg5_1);
+        mRg51.setOnClickListener(this);
         mRg52 = (RadioButton) view.findViewById(R.id.rg5_2);
+        mRg52.setOnClickListener(this);
         mRg5 = (RadioGroup) view.findViewById(R.id.rg5);
+        mRg5.setOnCheckedChangeListener(this);
         mSp2 = (Spinner) view.findViewById(R.id.sp2);
         mOk = (Button) view.findViewById(R.id.ok);
         mOk.setOnClickListener(this);
@@ -229,12 +249,13 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
                 picker.show();
                 break;
             case R.id.ok:
-                String url="userWorkId=1&userAppointmentName=vip订单&content=志炬的订单&type=0&gold=2000&color=1&";
-                String arg="carId="+carId+"&time="+time+"&num="+num+"&engine="+engine+"&speed="+speed+"&wheel="+wheel+"&control="+control+"&brake="+brake+"&hang="+hang;
-                Log.d("Fragment3_1", url + arg);
-                MyOk.post("dataInterface/UserAppointment/create", url+arg, new Callback() {
+                String arg = s2 + "carId=" + carId + "&time=" + time + "&num=" + num + "&engine=" + engine + "&speed=" + speed + "&wheel=" + wheel + "&control=" + control + "&brake=" + brake + "&hang=" + hang;
+                Log.d("Fragment3_1", arg);
+                MyOk.post("dataInterface/UserAppointment/create", arg, new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {}
+                    public void onFailure(Call call, IOException e) {
+                    }
+
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         Log.d("Fragment3_1", response.body().string());
@@ -243,7 +264,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
                             if (jsonObject.getString("status").equals("200")) {
                                 Message message = new Message();
                                 message.what = 1;
-                                message.obj =jsonObject.getString("message");
+                                message.obj = jsonObject.getString("message");
                                 handler.sendMessage(message);
                             }
                         } catch (JSONException e) {
@@ -262,55 +283,58 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
             default:
                 break;
             case R.id.rg1:
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.carId1:
-                        carId=1+"";
+                        carId = 1 + "";
+                        Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.carId2:
-                        carId=2+"";
+                        carId = 2 + "";
+                        Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.carId3:
-                        carId=3+"";
+                        carId = 3 + "";
+                        Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 break;
             case R.id.rg2:
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rg2_1:
-                        speed=0+"";
+                        speed = 0 + "";
                         break;
                     case R.id.rg2_2:
-                        speed=1+"";
+                        speed = 1 + "";
                         break;
                 }
                 break;
             case R.id.rg3:
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rg3_1:
-                        wheel=0+"";
+                        wheel = 0 + "";
                         break;
                     case R.id.rg3_2:
-                        wheel=1+"";
+                        wheel = 1 + "";
                         break;
                 }
                 break;
             case R.id.rg4:
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rg4_1:
-                        control=0+"";
+                        control = 0 + "";
                         break;
                     case R.id.rg4_2:
-                        control=1+"";
+                        control = 1 + "";
                         break;
                 }
                 break;
             case R.id.rg5:
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rg5_1:
-                        brake=0+"";
+                        brake = 0 + "";
                         break;
                     case R.id.rg5_2:
-                        brake=1+"";
+                        brake = 1 + "";
                         break;
                 }
                 break;
