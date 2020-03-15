@@ -84,7 +84,6 @@ public class Fragment3_2 extends Fragment {
     }
 
     private void addview() {
-        Collections.reverse(carOrders);
         mTab.removeAllViews();
         for (CarOrder carOrder : carOrders) {
             View view=View.inflate(getActivity(),R.layout.item3_add,null);

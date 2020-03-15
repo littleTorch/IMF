@@ -1,5 +1,7 @@
 package com.lenovo.manufacture;
 
+import android.os.Message;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,5 +19,12 @@ public class MyOk {
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .build();
         client.newCall(request).enqueue(callback);
+    }
+
+    public static Message getMessage(int what, Object obj){
+        Message message = Message.obtain();
+        message.what=what;
+        message.obj=obj;
+        return message;
     }
 }

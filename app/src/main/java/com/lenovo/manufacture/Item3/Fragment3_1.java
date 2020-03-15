@@ -110,7 +110,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
     String carId = "1";
     String engine = "0";
     String num = "0";
-    String time = (int)new Date().getTime()/1000+"";
+    String time = (long)new Date().getTime()/1000+"";
     String speed = "0";
     String wheel = "0";
     String control = "0";
@@ -187,7 +187,7 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
             @Override
             public void onTimeSelect(Date date, View v) {
                 mBu1.setText(new SimpleDateFormat("yyyy/MM/dd").format(date));
-                time = (int)date.getTime()/1000+ "";
+                time = (long)date.getTime()/1000+ "";
             }
         }).isDialog(true)
                 .setLabel("年", "月", "日", null, null, null)
@@ -249,18 +249,17 @@ public class Fragment3_1 extends Fragment implements View.OnClickListener, Radio
                 picker.show();
                 break;
             case R.id.ok:
-                String arg = s2 + "carId=" + carId + "&time=" + time + "&num=" + num + "&engine=" + engine + "&speed=" + speed + "&wheel=" + wheel + "&control=" + control + "&brake=" + brake + "&hang=" + hang;
+                String arg = s2 + "carId=" + carId + "&time=" + time + "&num=" + mEt2.getText() + "&engine=" + engine + "&speed=" + speed + "&wheel=" + wheel + "&control=" + control + "&brake=" + brake + "&hang=" + hang;
                 Log.d("Fragment3_1", arg);
                 MyOk.post("dataInterface/UserAppointment/create", arg, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                     }
-
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Log.d("Fragment3_1", response.body().string());
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().string());
+                            Log.d("Fragment3_1", jsonObject.toString());
                             if (jsonObject.getString("status").equals("200")) {
                                 Message message = new Message();
                                 message.what = 1;
