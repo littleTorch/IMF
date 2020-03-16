@@ -56,7 +56,7 @@ public class Item4 extends AppCompatActivity implements View.OnClickListener {
             public void run() {
                 getLine();
             }
-        }, 0, 5000);
+        }, 0, 3000);
     }
 
     private void getLine() {
@@ -105,7 +105,7 @@ public class Item4 extends AppCompatActivity implements View.OnClickListener {
                             }
                         }
                         allSteps.sort(((o1, o2) -> o2 - o1));
-                        allSteps.add(allSteps.get(19) + 1);
+                        allSteps.add(allSteps.get(18) + 1);
                         getStep();
                     }
                 } catch (JSONException e) {
@@ -155,7 +155,8 @@ public class Item4 extends AppCompatActivity implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void addview(){
-        stepMsgs.sort((o1, o2) -> o2.getPlStepId() - o1.getPlStepId());
+        pop.dismiss();
+        stepMsgs.sort((o1, o2) -> o1.getPlStepId() - o2.getPlStepId());
         for (int i = 0; i < stepMsgs.size(); i++) {
             StepMsg stepMsg = stepMsgs.get(i);
             mIms[i].setImageResource(R.drawable.yuan_w);
@@ -192,8 +193,6 @@ public class Item4 extends AppCompatActivity implements View.OnClickListener {
         mBeak.setOnClickListener(this);
         mHead = (TextView) findViewById(R.id.head);
         pop=new I4popup(Item4.this);
-        View contentView = pop.getContentView();
-        contentView.measure(make(pop.getWidth()),make(pop.getHeight()));
         mHead.setText("生产线查看");
         mIms = new ImageView[20];
         for (int i = 0; i < 20; i++) {
@@ -201,6 +200,8 @@ public class Item4 extends AppCompatActivity implements View.OnClickListener {
             mIms[i] = findViewById(getResources().getIdentifier("Im" + j, "id", getPackageName()));
         }
         mTop = (TextView) findViewById(R.id.top);
+        View contentView = pop.getContentView();
+        contentView.measure(make(pop.getWidth()),make(pop.getHeight()));
     }
 
     @SuppressWarnings("ResourceType")
