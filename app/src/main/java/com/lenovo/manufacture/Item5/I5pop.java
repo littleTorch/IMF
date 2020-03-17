@@ -3,6 +3,7 @@ package com.lenovo.manufacture.Item5;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +60,7 @@ public class I5pop extends PopupWindow {
 
     public void setview(int step, List<SM> list) {
         SM sm = list.get(step);
+        Log.d("I5pop", sm.toString());
         tv1.setText(steps[step]+"");
         tv2.setText(sm.getPlStepName()+"");
         tv3.setText(sm.getPower()+"");

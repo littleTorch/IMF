@@ -19,6 +19,7 @@ import com.lenovo.manufacture.Item2.Item2;
 import com.lenovo.manufacture.Item3.Item3;
 import com.lenovo.manufacture.Item4.Item4;
 import com.lenovo.manufacture.Item5.Item5;
+import com.lenovo.manufacture.Item6.Item6;
 
 /**
  * @author Amoly
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     mActivity.startActivity(new Intent().setClass(MainActivity.this, Item5.class));
                     break;
                 case 7:
-                    mActivity.startActivity(new Intent().setClass(MainActivity.this,TestActivity.class));
+                    mActivity.startActivity(new Intent().setClass(MainActivity.this, Item6.class));
                     break;
                 case 8:
                     mActivity.startActivity(new Intent().setClass(MainActivity.this,TestActivity.class));

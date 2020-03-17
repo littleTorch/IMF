@@ -1,11 +1,10 @@
 package com.lenovo.manufacture.Item5;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -24,7 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -70,12 +69,10 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
                     JSONObject jsonObject=new JSONObject(response.body().string());
                     if (jsonObject.getString("status").equals("200")){
                         JSONArray array=jsonObject.getJSONArray("data");
-                        for (int i = 0; i < array.length(); i++) {
-                            JSONObject j=array.getJSONObject(i);
+                            JSONObject j=array.getJSONObject(0);
                             lineId=j.getInt("id");
                             nowstepId=j.getInt("stageId");
                             getAllStep();
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -85,7 +82,7 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void getAllStep() {
-        MyOk.post("dataInterface/UserPlStep/search", "userProductionLineId", new Callback() {
+        MyOk.post("dataInterface/UserPlStep/search", "userProductionLineId="+lineId, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {            }
 
@@ -96,12 +93,19 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     if (jsonObject.getString("status").equals("200")){
                         JSONArray array=jsonObject.getJSONArray("data");
+                        stepId=new ArrayList<>();
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject j=array.getJSONObject(i);
-                            stepId.add(j.getInt("nextUserPlStepId"));
+                            Log.d("Item5", j.toString());
+                            if (j.getInt("nextUserPlStepId")!=-1) {
+                                stepId.add(j.getInt("nextUserPlStepId"));
+                            }
                         }
                         stepId.sort(((o1, o2) -> o2-o1));
-                        stepId.add(stepId.get(18)+1);
+                        for (Integer integer : stepId) {
+                            Log.d("Item5", "integer:" + integer);
+                        }
+                        stepId.add(stepId.get(18)-1);
                         getstepmsg();
                     }
                 } catch (JSONException e) {
@@ -115,13 +119,13 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
         MyOk.post("dataInterface/PLStep/getAll", "", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {            }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     if (jsonObject.getString("status").equals("200")){
                         JSONArray array=jsonObject.getJSONArray("data");
+                        sms=new ArrayList<>();
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject j=array.getJSONObject(i);
                             SM sm=new SM();
@@ -136,7 +140,7 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
                             @RequiresApi(api = Build.VERSION_CODES.N)
                             @Override
                             public void run() {
-                                sms.sort((o1, o2) -> o2.getStep()-o1.getStep());
+                                sms.sort((o1, o2) -> o1.getId()-o2.getId());
                                 setia();
                                 addview();
                             }
@@ -150,13 +154,13 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void setia() {
-        for (ImageView mIm : mIms) {
+        for (ImageView mIm : mIas) {
             mIm.setVisibility(View.INVISIBLE);
         }
         for (int i = 0; i < sms.size(); i++) {
             SM sm = sms.get(i);
             if (sm.getPower()<sm.getConsume()){
-                mIms[i].setVisibility(View.VISIBLE);
+                mIas[i].setVisibility(View.VISIBLE);
             }
         }
     }
@@ -175,8 +179,6 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
                     }else if (finalI ==7){
                         xoff=-pop.getContentView().getMeasuredWidth();
                         yoff=-(pop.getContentView().getMeasuredHeight()+mIms[finalI].getHeight());
-                    }else if (finalI ==12){
-                        g=Gravity.END;
                     }else if (finalI ==13){
                         g=Gravity.END;
                         yoff=-(pop.getContentView().getMeasuredHeight()+mIms[finalI].getHeight())/2;
@@ -187,7 +189,7 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
                         xoff=Math.abs(pop.getContentView().getMeasuredWidth()-mIms[finalI].getWidth())/2;
                         yoff=-(pop.getContentView().getMeasuredHeight()+mIms[finalI].getHeight());
                     }
-                    pop.setview(finalI+1,sms);
+                    pop.setview(finalI,sms);
                     PopupWindowCompat.showAsDropDown(pop,mIms[finalI],xoff,yoff,g);
                 }
             });
@@ -214,7 +216,7 @@ public class Item5 extends AppCompatActivity implements View.OnClickListener {
                         xoff=Math.abs(pop.getContentView().getMeasuredWidth()-mIms[finalI].getWidth())/2;
                         yoff=-(pop.getContentView().getMeasuredHeight()+mIms[finalI].getHeight());
                     }
-                    pop.setview(finalI+1,sms);
+                    pop.setview(finalI,sms);
                     PopupWindowCompat.showAsDropDown(pop,mIms[finalI],xoff,yoff,g);
                 }
             });
