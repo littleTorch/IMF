@@ -174,19 +174,23 @@ public class Item6 extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.top1:
                 mTop1.setTextColor(textColors);
-                mV1.setVisibility(View.INVISIBLE);
+                mV1.setVisibility(View.VISIBLE);
+                Item6.this.handler.sendMessage(MyOk.getMessage(0,""));
                 break;
             case R.id.top2:
                 mTop2.setTextColor(textColors);
-                mV2.setVisibility(View.INVISIBLE);
+                mV2.setVisibility(View.VISIBLE);
+                Item6.this.handler.sendMessage(MyOk.getMessage(1,""));
                 break;
             case R.id.top3:
                 mTop3.setTextColor(textColors);
-                mV3.setVisibility(View.INVISIBLE);
+                mV3.setVisibility(View.VISIBLE);
+                Item6.this.handler.sendMessage(MyOk.getMessage(2,""));
                 break;
             case R.id.top4:
                 mTop4.setTextColor(textColors);
-                mV4.setVisibility(View.INVISIBLE);
+                mV4.setVisibility(View.VISIBLE);
+                Item6.this.handler.sendMessage(MyOk.getMessage(3,""));
                 break;
         }
     }

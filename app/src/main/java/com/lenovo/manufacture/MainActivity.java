@@ -127,8 +127,11 @@ public class MainActivity extends AppCompatActivity {
                 case 5:
                     mActivity.startActivity(new Intent().setClass(MainActivity.this, Item5.class));
                     break;
-                case 7:
+                case 6:
                     mActivity.startActivity(new Intent().setClass(MainActivity.this, Item6.class));
+                    break;
+                case 7:
+                    mActivity.startActivity(new Intent().setClass(MainActivity.this, TestActivity.class));
                     break;
                 case 8:
                     mActivity.startActivity(new Intent().setClass(MainActivity.this,TestActivity.class));

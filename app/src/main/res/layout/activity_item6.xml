@@ -57,7 +57,8 @@
                     android:id="@+id/v2"
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
-                    android:background="@android:color/holo_blue_light"/>
+                    android:background="@android:color/holo_blue_light"
+                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
                     android:id="@+id/v3"
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
-                    android:background="@android:color/holo_blue_light"/>
+                    android:background="@android:color/holo_blue_light"
+                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -99,7 +101,8 @@
                     android:id="@+id/v4"
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
-                    android:background="@android:color/holo_blue_light"/>
+                    android:background="@android:color/holo_blue_light"
+                    android:visibility="invisible"/>
             </LinearLayout>
 
         </LinearLayout>
