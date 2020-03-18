@@ -57,6 +57,7 @@ public class Item6_1 extends AppCompatActivity implements View.OnClickListener {
         mTv3 = (TextView) findViewById(R.id.tv3);
         mVideo = (VideoView) findViewById(R.id.video);
         mVideo.setOnClickListener(this);
+        mHead.setText("热点");
     }
 
     @Override

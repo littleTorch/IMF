@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Item6.Item6_1"></activity>
+        <activity android:name=".Item7.Item7"></activity>
+        <activity android:name=".Item6.Item6_1" />
         <activity android:name=".Item6.Item6" />
         <activity android:name=".Item5.Item5" />
         <activity android:name=".Item4.Item4" />
