@@ -15,7 +15,7 @@ public class LineWorker {
     private int power;
     private int peopleId;
     private int userProductionLineId;
-    private int workPostId;
+    private String workPostId;
 
     @Override
     public String toString() {
@@ -60,11 +60,11 @@ public class LineWorker {
         this.userProductionLineId = userProductionLineId;
     }
 
-    public int getWorkPostId() {
+    public String getWorkPostId() {
         return workPostId;
     }
 
-    public void setWorkPostId(int workPostId) {
+    public void setWorkPostId(String workPostId) {
         this.workPostId = workPostId;
     }
 }
