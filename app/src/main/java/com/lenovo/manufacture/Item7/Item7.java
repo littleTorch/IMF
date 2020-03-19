@@ -34,6 +34,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import okhttp3.Call;
@@ -94,9 +95,9 @@ public class Item7 extends AppCompatActivity implements View.OnClickListener {
             TextView tv3 = view.findViewById(R.id.tv3);
             TextView tv4 = view.findViewById(R.id.tv4);
             tv1.setText(putCar.getCarTypeName() + "");
-            tv1.setText(new DecimalFormat("###,###,###").format(putCar.getPrice()) + "");
-            tv1.setText(new SimpleDateFormat("yyyy-MM-dd-HH-mm").format(new Date(putCar.getTime() * 1000)));
-            tv1.setText(putCar.getNum() + "");
+            tv2.setText(new DecimalFormat("###,###,###").format(putCar.getPrice()) + "");
+            tv3.setText(new SimpleDateFormat("yyyy-MM-dd-HH-mm").format(new Date(putCar.getTime() * 1000)));
+            tv4.setText(putCar.getNum() + "");
             mTab.addView(view);
         }
     }
@@ -119,7 +120,9 @@ public class Item7 extends AppCompatActivity implements View.OnClickListener {
                         suv = 0;
                         total = 0;
                         for (int i = 0; i < array.length(); i++) {
-                            JSONObject j = array.getJSONObject(i);
+                            JSONObject json = array.getJSONObject(i);
+                            Iterator<String> keys = json.keys();
+                            JSONObject j=json.getJSONObject(keys.next());
                             PutCar putCar = new PutCar();
                             putCar = new Gson().fromJson(j.toString(), PutCar.class);
                             if (putCar.getCarTypeId() == 1) {
@@ -136,10 +139,10 @@ public class Item7 extends AppCompatActivity implements View.OnClickListener {
                             @RequiresApi(api = Build.VERSION_CODES.N)
                             @Override
                             public void run() {
-                                mTotal.setText(total + "");
-                                mCar.setText(car + "");
-                                mMpv.setText(mpv + "");
-                                mSuv.setText(suv + "");
+                                mTotal.setText(new DecimalFormat("###,###,###").format(total) + "");
+                                mCar.setText(new DecimalFormat("###,###,###").format(car) + "");
+                                mMpv.setText(new DecimalFormat("###,###,###").format(mpv) + "");
+                                mSuv.setText(new DecimalFormat("###,###,###").format(suv) + "");
                                 addview();
                                 setLinechart();
                             }
@@ -166,6 +169,7 @@ public class Item7 extends AppCompatActivity implements View.OnClickListener {
         lineData.addDataSet(dataSet);
         XAxis xAxis = mLc.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getAxisLabel(float value, AxisBase axis) {
@@ -173,8 +177,7 @@ public class Item7 extends AppCompatActivity implements View.OnClickListener {
             }
         });
         mLc.getAxisRight().setEnabled(false);
-        YAxis axisLeft = mLc.getAxisLeft();
-        axisLeft.setDrawGridLines(false);
+        mLc.getAxisLeft().setDrawGridLines(true);
         mLc.setData(lineData);
         mLc.invalidate();
     }
