@@ -64,36 +64,37 @@ public class Item9 extends AppCompatActivity implements View.OnClickListener {
     List<Integer> linelist;
     private View[] mVs;
     private View[] mPvs;
-    int pos=0,lineId=0;
+    int pos = 0, lineId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item9);
         initView();
-        timer=new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 getjson();
             }
-        },0,50000);
+        }, 0, 50000);
     }
 
     private void getjson() {
         MyOk.post("dataInterface/UserProductionLine/getAll", "", new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {            }
+            public void onFailure(Call call, IOException e) {
+            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    JSONObject jsonObject=new JSONObject(response.body().string());
-                    if (jsonObject.getString("status").equals("200")){
-                        JSONArray array=jsonObject.getJSONArray("data");
-                        linelist=new ArrayList<>();
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    if (jsonObject.getString("status").equals("200")) {
+                        JSONArray array = jsonObject.getJSONArray("data");
+                        linelist = new ArrayList<>();
                         for (int i = 0; i < array.length(); i++) {
-                            JSONObject j=array.getJSONObject(i);
+                            JSONObject j = array.getJSONObject(i);
                             linelist.add(j.getInt("position"));
                         }
                         setbt();
@@ -110,7 +111,7 @@ public class Item9 extends AppCompatActivity implements View.OnClickListener {
         for (int i = 0; i < mPoss.length; i++) {
             mPoss[i].setBackgroundColor(Color.parseColor("#ff33b5e5"));
             for (Integer integer : linelist) {
-                if (integer==i){
+                if (integer == i) {
                     mPoss[i].setBackgroundColor(Color.parseColor("#aaa"));
                     mPoss[i].setEnabled(false);
                 }
@@ -146,9 +147,9 @@ public class Item9 extends AppCompatActivity implements View.OnClickListener {
         mOkv = (View) findViewById(R.id.okv);
         mOk = (Button) findViewById(R.id.ok);
         mOk.setOnClickListener(this);
-        mPoss=new Button[]{mPos1,mPos2,mPos3,mPos4};
-        mVs=new View[]{mV1,mV2,mV3};
-        mPvs=new View[]{mPv1,mPv2,mPv3,mPv4};
+        mPoss = new Button[]{mPos1, mPos2, mPos3, mPos4};
+        mVs = new View[]{mV1, mV2, mV3};
+        mPvs = new View[]{mPv1, mPv2, mPv3, mPv4};
     }
 
     @Override
@@ -160,44 +161,44 @@ public class Item9 extends AppCompatActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.car1:
-                lineId=1;
+                lineId = 1;
                 setv();
                 mV1.setVisibility(View.INVISIBLE);
                 break;
             case R.id.car2:
-                lineId=2;
+                lineId = 2;
                 setv();
                 mV2.setVisibility(View.INVISIBLE);
                 break;
             case R.id.car3:
-                lineId=3;
+                lineId = 3;
                 setv();
                 mV3.setVisibility(View.INVISIBLE);
                 break;
             case R.id.pos1:
-                pos=0;
+                pos = 0;
                 setpv();
                 mPv1.setVisibility(View.INVISIBLE);
                 break;
             case R.id.pos2:
-                pos=1;
+                pos = 1;
                 setpv();
                 mPv2.setVisibility(View.INVISIBLE);
                 break;
             case R.id.pos3:
-                pos=2;
+                pos = 2;
                 setpv();
                 mPv3.setVisibility(View.INVISIBLE);
                 break;
             case R.id.pos4:
-                pos=3;
+                pos = 3;
                 setpv();
                 mPv4.setVisibility(View.INVISIBLE);
                 break;
             case R.id.ok:
                 mOkv.setVisibility(View.INVISIBLE);
                 createLine();
-                Timer timer1=new Timer();
+                Timer timer1 = new Timer();
                 timer1.schedule(new TimerTask() {
                     @Override
                     public void run() {
@@ -209,45 +210,43 @@ public class Item9 extends AppCompatActivity implements View.OnClickListener {
                             }
                         });
                     }
-                },1000,1000);
+                }, 1000, 1000);
                 break;
         }
     }
 
     private void createLine() {
-        MyOk.post("Interface/index/createStudentLine", "lineId="+lineId+"&pos="+pos, new Callback() {
+        MyOk.post("Interface/index/createStudentLine", "lineId=" + lineId + "&pos=" + pos, new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {            }
+            public void onFailure(Call call, IOException e) {
+            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    JSONObject jsonObject=new JSONObject(response.body().string());
-                    if (jsonObject.getString("status").equals("200")){
-                        String s=jsonObject.getString("message");
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                        String s = jsonObject.getString("message");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(Item9.this,s, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Item9.this, s, Toast.LENGTH_SHORT).show();
                             }
                         });
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
     }
-
-    private void setpv() {
-        for (View mV : mPvs) {
-            mV.setVisibility(View.VISIBLE);
+        private void setpv () {
+            for (View mV : mPvs) {
+                mV.setVisibility(View.VISIBLE);
+            }
         }
-    }
 
-    private void setv() {
+        private void setv () {
             for (View mV : mVs) {
                 mV.setVisibility(View.VISIBLE);
             }
+        }
     }
-}

@@ -63,9 +63,7 @@ public class Item1 extends AppCompatActivity implements View.OnClickListener {
     private void getAllWorker() {
         MyOk.post("dataInterface/People/getAll", "", new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
+            public void onFailure(Call call, IOException e) {            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
